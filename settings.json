@@ -7,8 +7,7 @@
     "addressLine2": "",
     "addressLine3": "",
     "city": "",
-    // Get your country code from the README.md list
-    "country": 1,
+    "country": Get your country code from the README.md list,
     "state": "",
     "zipCode": "",
     "phone": ""
