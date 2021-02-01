@@ -43,7 +43,7 @@ while len(emails) < amountOfAccounts:
 
     # Gen random string for email.
     unique = [random.choice(randomcharacters) for i in range(3)]
-    email = f'{data["firstName"]}{data["lastName"]}{"".join(unique)}@{data["catchAll"]}'.lower()
+    email = "{}{}{}@{}".format(data["firstName"], data["lastName"], "".join(unique), data["catchAll"]).lower()
 
     print("Making account for email {}".format(email))
     # Create Account
@@ -56,7 +56,7 @@ while len(emails) < amountOfAccounts:
         "username": email
     }
 
-    create = session.post(url=f"{BASE_URL}/api/legacy/v1/account/register", json=createData, headers=HEADERS, proxies=proxyToUser)
+    create = session.post(url="{}/api/legacy/v1/account/register".format(BASE_URL), json=createData, headers=HEADERS, proxies=proxyToUser)
     
     if create.status_code != 200:
         print("Failed to gen account. Retrying!")
@@ -85,7 +85,7 @@ while len(emails) < amountOfAccounts:
     }    
     
     
-    address = session.post(url=f"{BASE_URL}/api/legacy/v1/addressbook", json=addressData, headers=HEADERS, proxies=proxyToUser)
+    address = session.post(url="{}/api/legacy/v1/addressbook".format(BASE_URL), json=addressData, headers=HEADERS, proxies=proxyToUser)
     
     if address.status_code != 200:
         print("Failed to add address. Retrying!")
@@ -93,14 +93,14 @@ while len(emails) < amountOfAccounts:
 
     # Set as default shipping and billing address
     addressResponseData = j.loads(address.text)
-    session.put(url=f'{BASE_URL}/api/legacy/v1/addressbook/shipping/{addressResponseData["id"]}', json={}, headers=HEADERS, proxies=proxyToUser)
-    session.put(url=f'{BASE_URL}/api/legacy/v1/addressbook/billing/{addressResponseData["id"]}', json={}, headers=HEADERS, proxies=proxyToUser)
+    session.put(url="{}/api/legacy/v1/addressbook/shipping/{}".format(BASE_URL, addressResponseData["id"]), json={}, headers=HEADERS, proxies=proxyToUser)
+    session.put(url="{}/api/legacy/v1/addressbook/shipping/{}".format(BASE_URL, addressResponseData["id"]), json={}, headers=HEADERS, proxies=proxyToUser)
     
     print("Successfully genned account + added address + set as default billing and shipping for {}".format(email))
     emails.append(email)
 
 with open('out.txt', 'w') as file:
     for email in emails:
-        file.write(f'{email}:{data["password"]}\n')
+        file.write("{}:{}\n".format(email, data["password"]))
 
 file.close()
