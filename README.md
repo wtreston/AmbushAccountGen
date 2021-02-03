@@ -7,7 +7,7 @@
 ## Steps to run:
 1. Place proxies in `proxies.txt` - these must be in the format of `http://user:password@ip:host`!
 2. Add your information to `settings.json`.
-  - Don't include the `@` in the catch all e.g `wtrstn.dev` is corred
+  - Don't include the `@` in the catch all e.g `wtrstn.dev` is correct
 3. Run `python3 ambushGen.py`.
 4. Follow the instructions in the command line.
 5. Find accounts in `output.txt` in the format `email:password`.
