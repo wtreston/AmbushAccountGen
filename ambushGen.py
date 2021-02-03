@@ -94,7 +94,7 @@ while len(emails) < amountOfAccounts:
     # Set as default shipping and billing address
     addressResponseData = j.loads(address.text)
     session.put(url="{}/api/legacy/v1/addressbook/shipping/{}".format(BASE_URL, addressResponseData["id"]), json={}, headers=HEADERS, proxies=proxyToUser)
-    session.put(url="{}/api/legacy/v1/addressbook/shipping/{}".format(BASE_URL, addressResponseData["id"]), json={}, headers=HEADERS, proxies=proxyToUser)
+    session.put(url="{}/api/legacy/v1/addressbook/billing/{}".format(BASE_URL, addressResponseData["id"]), json={}, headers=HEADERS, proxies=proxyToUser)
     
     print("Successfully genned account + added address + set as default billing and shipping for {}".format(email))
     emails.append(email)
