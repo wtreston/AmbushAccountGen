@@ -1,3 +1,5 @@
+# THIS ACCOUNT GEN NO LONGER WORKS
+
 # AmbushAccountGen
 
 ## Prerequisites:
